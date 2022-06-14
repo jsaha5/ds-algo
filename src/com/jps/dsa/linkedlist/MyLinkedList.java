@@ -1,50 +1,65 @@
 package com.jps.dsa.linkedlist;
 
-public class MyLinkedList<T> {
+public class MyLinkedList {
+    class Node {
+        private int val;
+        private Node next;
+        Node(int val, Node next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
     private Node head;
     private int size;
+
+    public int getSize() {
+        return size;
+    }
 
     public MyLinkedList() {
         this.head = null;
     }
 
-    public T get(int index) {
-        if (index > -1 && index <= size-1) {
-            Node<T> list = head;
-            for (int i = 0; i < index; i++) {
-                list = list.getNext();
-            }
-            return list.getVal();
 
-        } else {
-            throw new RuntimeException("Invalid index: " + index);
+    public int get(int index) {
+
+        if(!isEmpty() && index > -1 && index <=size-1) {
+            return findNodeAtIndex(index).val;
         }
-
+        return -1;
     }
 
-    public void addAtHead(T val) {
-        Node newNode = createNode(val);
-        if (null != head) {
-            newNode.setNext(head);
+    public void addAtHead(int val) {
+        Node newNode= new Node(val,null);
+        if(!isEmpty()) {
+            newNode.next = head;
         }
         head = newNode;
         size++;
     }
 
-    public void print() {
-        if (null == head) {
-            throw new RuntimeException("List is Empty");
-        } else {
-            Node<T> list = head;
-            while (list != null) {
-                System.out.println(list.getVal());
-                list = list.getNext();
-            }
+    public void addAtTail(int val) {
+
+    }
+
+    public void addAtIndex(int index, int val) {
+
+    }
+
+    public void deleteAtIndex(int index) {
+
+    }
+    private Node findNodeAtIndex(int index) {
+        Node node = head;
+
+        for (int i =0; i<index; i++) {
+            node = node.next;
         }
+        return node;
     }
-
-    private Node createNode(T val) {
-        return new Node(val, null);
+    private boolean isEmpty() {
+        if (head == null)
+            return true;
+        return false;
     }
-
 }
