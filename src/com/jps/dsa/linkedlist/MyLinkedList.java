@@ -1,15 +1,7 @@
 package com.jps.dsa.linkedlist;
 
 public class MyLinkedList {
-    class Node {
-        private int val;
-        private Node next;
 
-        Node(int val, Node next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     private Node head;
     private int size;
@@ -26,7 +18,7 @@ public class MyLinkedList {
     public int get(int index) {
 
         if (!isEmpty() && index > -1 && index <= size - 1) {
-            return findNodeAtIndex(index).val;
+            return findNodeAtIndex(index).getVal();
         }
         return -1;
     }
@@ -34,7 +26,7 @@ public class MyLinkedList {
     public void addAtHead(int val) {
         var newNode = new Node(val, null);
         if (!isEmpty()) {
-            newNode.next = head;
+            newNode.setNext(head);
         }
         head = newNode;
         size++;
@@ -44,7 +36,7 @@ public class MyLinkedList {
         var newNode = new Node(val, null);
         if (!isEmpty()) {
             var lastNode = findNodeAtIndex(size - 1);
-            lastNode.next = newNode;
+            lastNode.setNext(newNode);
         } else {
             head = newNode;
         }
@@ -61,8 +53,8 @@ public class MyLinkedList {
             } else {
                 var newNode = new Node(val, null);
                 var previousNodeOfIndex = findNodeAtIndex(index - 1);
-                newNode.next = previousNodeOfIndex.next;
-                previousNodeOfIndex.next = newNode;
+                newNode.setNext(previousNodeOfIndex.getNext());
+                previousNodeOfIndex.setNext(newNode);
                 size++;
             }
         }
@@ -72,21 +64,21 @@ public class MyLinkedList {
     public void deleteAtIndex(int index) {
         if (index > -1 && index < size) {
             if (index == 0) {
-                head = head.next;
+                head = head.getNext();
             } else {
                 var previousNode = findNodeAtIndex(index - 1);
                 var indexNode = findNodeAtIndex(index);
-                previousNode.next = indexNode.next;
+                previousNode.setNext(indexNode.getNext());
             }
             size--;
         }
     }
 
-    private Node findNodeAtIndex(int index) {
+    public Node findNodeAtIndex(int index) {
         var node = head;
 
         for (int i = 0; i < index; i++) {
-            node = node.next;
+            node = node.getNext();
         }
         return node;
     }
@@ -96,4 +88,6 @@ public class MyLinkedList {
             return true;
         return false;
     }
+
+
 }

@@ -1,19 +1,19 @@
 package com.jps.dsa.linkedlist;
 
-public class Node<T> {
-    private T val;
+class Node {
+    private int val;
     private Node next;
 
-    public Node(T val, Node next) {
+    Node(int val, Node next) {
         this.val = val;
         this.next = next;
     }
 
-    public T getVal() {
+    public int getVal() {
         return val;
     }
 
-    public void setVal(T val) {
+    public void setVal(int val) {
         this.val = val;
     }
 

@@ -134,5 +134,26 @@ public class LinkedListTest {
         assertEquals(0, list.getSize());
     }
 
+    @Test
+    @DisplayName("There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer.")
+    void testCycleInList() {
+        list.addAtTail(1);
+        list.addAtTail(2);
+        list.addAtTail(3);
+        list.addAtTail(4);
+        list.addAtTail(5);
+        list.addAtTail(6);
+        Node lastNode = list.findNodeAtIndex(5);
+        Node secondNode = list.findNodeAtIndex(2);
+        lastNode.setNext(secondNode);
+//        assertEquals(true, DetectCyclesInList.hasCycle(list.findNodeAtIndex(0)));
+//
+//        assertEquals(true, DetectCyclesInList.findCycleFloyedAlgo(list.findNodeAtIndex(0)));
+       Node cycleNode =  DetectCyclesInList.findCycleStartNode(list.findNodeAtIndex(0));
+        System.out.println(cycleNode.getVal());
+        System.out.println(secondNode.getVal());
+       // assertEquals(secondNode, DetectCyclesInList.findCycleStartNode(list.findNodeAtIndex(0)));
+    }
+
 
 }
